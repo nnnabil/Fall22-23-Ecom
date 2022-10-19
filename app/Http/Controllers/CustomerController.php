@@ -90,4 +90,11 @@ class CustomerController extends Controller
         $orders = Order::where('customer_id',$customer_id)->get();
         return view('pages.customer.myorders')->with('orders',$orders);
     }
+    
+    public function orderdetails(Request $request){
+        $id = $request->id;
+        $order = Order::where('id',$id)->first();
+        //return $order->products[0]->order->customer;
+        return view('pages.customer.orderdetails')->with('order',$order);
+    }
 }

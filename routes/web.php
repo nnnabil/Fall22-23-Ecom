@@ -34,3 +34,9 @@ Route::post('/checkout',[ProductController::class,'checkout'])->middleware('Logg
 Route::get('/customer/myorders',[CustomerController::class,'myorders'])
 ->middleware('LoggedInCustomer')->name('customer.myorders');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout'); 
+
+Route::get('/customer/myorders/details/{id}',[CustomerController::class,'orderdetails'])->middleware('LoggedInCustomer')->name('customer.myorders.details');
+
+// Add Product
+Route::get('/addProduct',[ProductController::class,'addProduct'])->name('addProduct');
+Route::post('/addProduct',[ProductController::class,'addProductSubmit'])->name('addProduct');

@@ -9,4 +9,8 @@ class Product extends Model
 {
     use HasFactory;
     public $timestamps   = false;
+
+    public function orders(){
+        $this->hasMany(OrderDetail::class,'order_id');
+    }
 }

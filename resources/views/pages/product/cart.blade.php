@@ -14,7 +14,8 @@
             @endphp
             @foreach ($cart as $item)
                 <tr>
-                    <td><img src="{{$item->image}}" width="50px" height="50px"></td>
+                    <!-- <td><img src="{{$item->image}}" width="50px" height="50px"></td> -->
+                    <td><img src="{{asset('images/'.$item->image)}}" width="50px" height="50px"></td>
                     <td>{{$item->name}}</td>
                     <td>{{$item->qty}}</td>
                     <td>{{$item->price}}</td>
