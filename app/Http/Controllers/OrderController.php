@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use Illuminate\Http\Request;
+use App\Mail\InvoiceMail;
+use App\Models\OrderDetail;
+use Mail;
 
 class OrderController extends Controller
 {
@@ -82,5 +86,23 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+    public function invoiceEmail(Request $request){
+        $order_id = $request->id;
+
+        $order_details = OrderDetail::where('id',$order_id)->first();
+
+        $myEmail = 'rhnabil.aiub@gmail.com';
+
+        $details = [
+            'title' => 'Mail Demo from Adv Web',
+            'url' => 'https://www.aiub.edu',
+            'o_details' => $order_details
+        ];
+        // return $details;
+
+        Mail::to($myEmail)->send(new InvoiceMail($details));
+
+        dd("Mail Send Successfully");
     }
 }
