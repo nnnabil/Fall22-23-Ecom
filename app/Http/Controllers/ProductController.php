@@ -173,4 +173,15 @@ class ProductController extends Controller
         /* Store $imageName name in DATABASE from HERE */
         return "No file";
     }
+    public function APIList(){
+        return Product::all();
+    }
+    public function APIPost(Request $req){
+        $product = new Product();
+        $product->name = $req->name;
+        $product->price = $req->price;
+        $product->image = $req->image;
+        $product->save();
+        return $req;
+    }
 }
